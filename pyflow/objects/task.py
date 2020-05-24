@@ -25,14 +25,21 @@ class Task ():
         if isinstance(other, list):
             pass #TODO: support for parallel gateways
         elif isinstance(other, tuple):
-            pass #TODO: support for exclusive gateways
+            self._diagram.connect_exclusive_diverge(self, other)
         else:
             self._diagram.connect(self, other)
 
         return other
 
     def __lshift__ (self, other):
-        pass 
+        if isinstance(other, list):
+            pass #TODO: support for parallel gateways
+        elif isinstance(other, tuple):
+            self._diagram.connect_exclusive_converge(self, other)
+        else:
+            pass 
+
+        return other
 
     def __rrshift__(self, other):
         self.__lshift__(other)
