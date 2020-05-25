@@ -61,3 +61,6 @@ class BPMNDiagram ():
         self.name = name 
         self.graph = nx.DiGraph()
         self.tasks = []
+
+    def view(self):
+        bpmn_utils.view(self)
