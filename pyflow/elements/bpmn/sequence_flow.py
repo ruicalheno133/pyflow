@@ -11,3 +11,27 @@ class SequenceFlow ():
         self.id = id if id else SequenceFlow.generate_id()
         self.sourceRef = source._id 
         self.targetRef = target._id
+
+    @property
+    def id(self):
+        return self._id 
+
+    @id.setter 
+    def id (self, id):
+        self._id = id
+
+    @property
+    def sourceRef(self):
+        return self._sourceRef 
+
+    @sourceRef.setter 
+    def sourceRef (self, sourceRef):
+        self._sourceRef = sourceRef
+
+    @property
+    def targetRef(self):
+        return self._targetRef 
+
+    @targetRef.setter 
+    def targetRef (self, targetRef):
+        self._targetRef = targetRef
