@@ -8,6 +8,35 @@ from pyflow.utils import bpmn as bpmn_utils
 
 class BPMNDiagram ():
 
+    def __init__(self, name: str):
+        self._name = name 
+        self._graph = nx.DiGraph()
+        self._tasks = []
+
+    @property
+    def name(self):
+        return self._name 
+
+    @name.setter 
+    def name (self, name):
+        self._name = name
+
+    @property
+    def graph(self):
+        return self._graph 
+
+    @graph.setter 
+    def graph (self, graph):
+        self._graph = graph
+
+    @property
+    def tasks(self):
+        return self._tasks 
+
+    @tasks.setter 
+    def tasks (self, tasks):
+        self._tasks = tasks
+
     def add_sequence_flow(self, sf: SequenceFlow):
         self.graph.add_edge(sf.sourceRef, sf.targetRef)
 
@@ -40,7 +69,7 @@ class BPMNDiagram ():
             if isinstance(n, Node):
                 self.connect(node, n) if diverge else self.connect(n, node)
             else:
-                self.connect(node, n.n1) if diverge else self.connect(n.n2, node)
+                self.connect(node, n.start) if diverge else self.connect(n.end, node)
 
     def connect(self, task1: Node, task2: Node):
         '''
@@ -56,11 +85,6 @@ class BPMNDiagram ():
         self.update_node_incoming(task2, task1)
         
         self.add_sequence_flow(sf)
-
-    def __init__(self, name: str):
-        self.name = name 
-        self.graph = nx.DiGraph()
-        self.tasks = []
 
     def view(self):
         bpmn_utils.view(self)
