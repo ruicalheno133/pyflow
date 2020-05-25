@@ -21,8 +21,14 @@ class ParallelGateway (Node):
 
         super().__init__(gateway_id, diagram)
         self._gatewayDirection = "Diverging" if diverge else "Converging"
-        self._incoming = []
-        self._outgoing = []
+
+    @property
+    def gatewayDirection(self):
+        return self._gatewayDirection 
+
+    @gatewayDirection.setter 
+    def gatewayDirection (self, gatewayDirection):
+        self._gatewayDirection = gatewayDirection
 
     def __repr__(self):
         return self._id
