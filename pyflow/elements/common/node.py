@@ -16,6 +16,30 @@ class Node ():
     def id (self, id):
         self._id = id
 
+    @property
+    def incoming(self):
+        return self._incoming 
+
+    @incoming.setter 
+    def incoming (self, incoming):
+        self._incoming = incoming
+
+    @property
+    def outgoing(self):
+        return self._outgoing 
+
+    @outgoing.setter 
+    def outgoing (self, outgoing):
+        self._outgoing = outgoing
+
+    @property
+    def diagram(self):
+        return self._diagram 
+
+    @diagram.setter 
+    def diagram (self, diagram):
+        self._diagram = diagram
+
     def add_incoming(self, incoming):
         self._incoming.append(incoming) 
 
